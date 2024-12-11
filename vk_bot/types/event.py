@@ -17,7 +17,6 @@ class Event:
 
         # Determine the event type
         self.type = TypeEvent(event[0])
-        print(event)
 
         if self.type == TypeEvent.MESSAGE_FLAGS_REPLACE:
             self.message_id = event[1]

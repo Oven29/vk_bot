@@ -28,7 +28,7 @@ setup(
         "idna==3.10",
         "multidict==6.1.0",
         "propcache==0.2.1",
-        "pydantic==2.10.3",
+        "pydantic<2.11.0,>=2.5.3",
         "pydantic_core==2.27.1",
         "python-socks==2.5.3",
         "typing_extensions==4.12.2",
