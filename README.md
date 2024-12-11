@@ -14,6 +14,10 @@ https://dev.vk.com/ru/reference
 git clone https://github.com/Oven29/vk_bot
 pip install -r vk_bot/requirements.txt
 ```
+or
+```bash
+pip install git+https://github.com/Oven29/vk_bot
+```
 
 ### Example of usage
 
