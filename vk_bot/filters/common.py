@@ -28,6 +28,12 @@ class MessageFilter(TypeFilter):
         if not await super().__call__(event):
             return False
 
+        if not event.text:
+            return False
+
+        if len(self.texts) == 0:
+            pass
+
         if (self.ignore_case and event.text.lower() in self.texts) or event.text in self.texts:
             return True
 

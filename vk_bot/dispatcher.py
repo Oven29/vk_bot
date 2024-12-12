@@ -2,10 +2,10 @@ import logging
 from typing import Callable, List, Optional, Tuple
 from aiovk import TokenSession, API, LongPoll
 
-
+from .filters import BaseFilter
 from .storage import BaseStorage
 from .types import Event
-from .router import Router
+from .router import Router, HandlerType
 
 
 class Dispatcher:
@@ -20,7 +20,10 @@ class Dispatcher:
             token: The token for the vk.com API.
         """
         self.__token = token
-        self.__routers: List[Router] = []
+        self.__dispatcher_router = Router('dispatcher')
+        self.register_handler = self.__dispatcher_router.register_handler
+        self.handler = self.__dispatcher_router.__call__
+        self.__routers: List[Router] = [self.__dispatcher_router]
         self.__logger = logging.getLogger(__name__)
         self.__sending_messages = []
         self.__storage = storage
