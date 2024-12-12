@@ -160,3 +160,8 @@ class Event:
 
     def __repr__(self) -> str:
         return f'{self.__class__.__name__}({self.__dict__()!r})'
+
+    @property
+    def from_user(self) -> int:
+        """Return the ID of the user who sent the message."""
+        return self.user_id or self.peer_id

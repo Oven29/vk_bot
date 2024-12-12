@@ -2,15 +2,17 @@ import logging
 from typing import Callable, List, Optional, Tuple
 from aiovk import TokenSession, API, LongPoll
 
-from .router import Router
+
+from .storage import BaseStorage
 from .types import Event
+from .router import Router
 
 
 class Dispatcher:
     """
       Class for handling events from vk.com
     """
-    def __init__(self, token: str) -> None:
+    def __init__(self, token: str, storage: Optional[BaseStorage] = None) -> None:
         """
         Initialize the Dispatcher with a token.
 
@@ -21,6 +23,7 @@ class Dispatcher:
         self.__routers: List[Router] = []
         self.__logger = logging.getLogger(__name__)
         self.__sending_messages = []
+        self.__storage = storage
 
     def include_routers(self, *routers: Tuple[Router]) -> None:
         """
